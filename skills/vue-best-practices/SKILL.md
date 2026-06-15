@@ -81,15 +81,15 @@ The following snippet is an example of the output format to follow when providin
 
 ## Issues Found
 1. **Issue 1**: Title of the issue found in the code.
-  - **Description**: A detailed explanation of the issue, including why it is a problem and how it affects the code in the long run.
-  - **Severity**: High/Medium/Low.
-  - **Location**: Relative file name and line number.
-  - **Recommendation**: Specific recommendation for improvement.  
+    - **Severity**: High/Medium/Low.
+    - **Description**: A detailed explanation of the issue, including why it is a problem and how it affects the code in the long run.
+    - **Location**: Relative file name and line number.
+    - **Recommendation**: Specific recommendation for improvement.  
 2. **Issue 2**: Title of the issue found in the code.
-  - **Description**: A detailed explanation of the issue, including why it is a problem and how it affects the code in the long run.
-  - **Severity**: High/Medium/Low.
-  - **Location**: Relative file name and line number.
-  - **Recommendation**: Specific recommendation for improvement.  
+    - **Severity**: High/Medium/Low.
+    - **Description**: A detailed explanation of the issue, including why it is a problem and how it affects the code in the long run.
+    - **Location**: Relative file name and line number.
+    - **Recommendation**: Specific recommendation for improvement.  
 3. ...
 ```
 

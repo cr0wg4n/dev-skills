@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "vue-best-practices": {
+      "source": "cr0wg4n/dev-skills",
+      "sourceType": "github",
+      "skillPath": "skills/vue-best-practices/SKILL.md",
+      "computedHash": "f667562281740ad7b02a9183dad0b4c2d8f226981f4554722f3c7499c6ca86e8"
+    }
+  }
+}
