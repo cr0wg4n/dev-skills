@@ -24,7 +24,7 @@ This skill is used as a quality check for Vue.js code, ideally before a code rev
 - Use a clear and consistent file structure for components, views, and other assets.
 - Separate concerns by organizing code into presentational components, container components, composables, types, constants, services, and utility functions.
 - Use single-file components (SFCs) to encapsulate template, script, and style in one file for better maintainability.
-- In a SFC use the `<script setup>` syntax for a more concise and efficient way to write components.
+- In a SFC use the `<script setup>` syntax for a more concise and efficient way to write components, so prefer Composition API over Options API.
 - In a SFC, place the `<script>` block before the `<template>` block for better readability and to follow common conventions, as it is easy to read the logic and dependencies at a glance before diving into the template.
 
 ### 3.2 Naming Conventions
