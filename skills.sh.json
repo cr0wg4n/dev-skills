@@ -1,0 +1,13 @@
+{
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "notGrouped": "bottom",
+  "groupings": [
+    {
+      "title": "Vue",
+      "description": "Skills related to Vue.js best practices and guidelines.",
+      "skills": [
+        "vue-best-practices"
+      ]
+    }
+  ]
+}
