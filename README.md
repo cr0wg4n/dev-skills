@@ -2,22 +2,50 @@
 
 [![skills.sh](https://skills.sh/b/cr0wg4n/dev-skills)](https://skills.sh/cr0wg4n/dev-skills)
 
-A single team language is crucial for creating long-term applications. Ensure you and your teams are talking the same language with these guideline skills. For now, it covers the following stack:
+> Stop rewriting the same code review comments. Let your AI agent enforce your team's standards automatically.
 
-* Vue3
-* TypeScript 
+**Dev Skills** is a collection of agentic skills that encode real engineering guidelines — so your AI assistant gives consistent, opinionated feedback across your entire team, not generic advice.
 
-## Installation 
+---
 
-```
+## 📦 What's inside
+
+| Skill | What it does |
+|-------|--------------|
+| `vue-code-review` | Reviews Vue 3 code against battle-tested guidelines: component structure, Composition API patterns, reactivity pitfalls, and more. |
+| `vue-builder` | Guides you through building Vue apps the right way — folder structure, state management, component design, naming conventions. |
+
+**TypeScript skills** — coming soon.
+
+---
+
+## ⚡ Install in 20 seconds
+
+```bash
 npx skills add cr0wg4n/dev-skills
 ```
 
-Choose your preferred agentic tool with `SPACE` and then press `ENTER`. It can be installed locally for your current project or globally.
+Pick your agentic tool with `SPACE`, confirm with `ENTER`. Works locally per-project or globally across your machine.
 
-## Contribution
+**Supported tools:** Claude Code, Cursor, and anything compatible with [skills.sh](https://skills.sh).
 
-To contribute, please read the [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines on how to add new skills or improve existing ones.
+---
 
+## 🤖 How it works
 
-> Share this skill with your teammates/friends and save some time defining guidelines.
+Once installed, your AI assistant gains context about your team's standards. Ask it to:
+
+```
+/vue-code-review   → review a Vue component against the guidelines
+/vue-builder       → get opinionated help building a new feature
+```
+
+---
+
+## 🤝 Contribute
+
+Want to add a skill for your stack? Read [CONTRIBUTING.md](CONTRIBUTING.md) to get started.
+
+---
+
+> Found this useful? Share it with your team. One install saves hours of repeated feedback.
