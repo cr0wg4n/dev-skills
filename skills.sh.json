@@ -4,9 +4,10 @@
   "groupings": [
     {
       "title": "Vue",
-      "description": "Skills related to Vue.js best practices and guidelines.",
+      "description": "A skill designed to review Vue.js code for quality, maintainability, and adherence to best practices, providing feedback and recommendations for improvement.",
       "skills": [
-        "vue-best-practices"
+        "vue-code-review",
+        "vue-builder"
       ]
     }
   ]
