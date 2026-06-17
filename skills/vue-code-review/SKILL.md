@@ -11,12 +11,17 @@ This is a skill designed to review Vue.js code for quality, maintainability, and
 This skill is used as a quality check for Vue.js code, ideally before a code review or during a code review. 
 
 ## 2. Instructions
-1. Check the latest commit or the current staged changes for Vue.js files; the user should provide the scope, or if not available or ambiguous, you can ask for the relevant code and scope to analyze. 
-2. Check the code against the guidelines provided below (section 3, Guidelines).
-3. Provide feedback and suggestions based on the guidelines, highlighting the areas that do not follow the guidelines and offer specific recommendations for improvement based on the knowledge base; the output you provide should follow the syntax mentioned in the section 4, Output.
+1. Before anything fetch the latest guidelines (`vue-code-guidelines.md` file) from the URL provided in section 3, Guidelines, use it later as context for providing recommendations and best practices.
+2. Check the latest commit or the current staged changes for Vue.js files; the user should provide the scope, or if not available or ambiguous, you can ask for the relevant code and scope to analyze. 
+3. Check the code against the guidelines (`vue-code-guidelines.md`) provided below in section 3, Guidelines.
+4. Provide feedback and suggestions based on the guidelines, highlighting the areas that do not follow the guidelines and offer specific recommendations for improvement based on the knowledge base; the output you provide should follow the syntax mentioned in the section 4, Output.
 
 ## 3. Guidelines
-Refer to the `./vue-code-guidelines.md` file for a comprehensive list of best practices and guidelines for writing Vue.js code.
+Fetch the `vue-code-guidelines.md` file for a comprehensive list of Vue.js best practices and guidelines. Use web fetch to retrieve the latest rules from this URL:
+
+```
+https://raw.githubusercontent.com/cr0wg4n/dev-skills/main/docs/guidelines/vue-code-guidelines.md
+```
 
 ## 4. Output
 The output should be a structured report that includes the overall quality of the code ("Good", "Fair", "Poor") and a list of specific issues found in the code, along with their severity, location, and recommendations for improvement. The next table shows the criteria for determining the overall quality of the code:

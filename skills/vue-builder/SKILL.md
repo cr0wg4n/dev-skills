@@ -11,6 +11,7 @@ This skill is used during the development phase of a Vue.js application, especia
 
 
 ## 2. Instructions
+Before anything fetch the latest guidelines (`vue-code-guidelines.md` file) from the URL provided in section 3, Guidelines, use it later as context for providing recommendations and best practices.
 
 There are two main scenarios where this skill can be applied, and the instructions for each scenario are as follows:
 
@@ -26,9 +27,11 @@ There are two main scenarios where this skill can be applied, and the instructio
 For each case, the skill should provide specific recommendations and best practices based on the knowledge base, ensuring that the Vue.js application is built in a well-structured and maintainable way.
 
 ## 3. Guidelines
-Refer to the `./vue-code-guidelines.md` file for a comprehensive list of best practices and guidelines for writing Vue.js code, which can be applied when building Vue.js applications using this skill.
+Fetch the `vue-code-guidelines.md` file for a comprehensive list of Vue.js best practices and guidelines. Use web fetch to retrieve the latest rules from this URL:
+
+```
+https://raw.githubusercontent.com/cr0wg4n/dev-skills/main/docs/guidelines/vue-code-guidelines.md
+```
 
 ## 4. Output
-The output of this skill should provide specific recommendations and best practices for building Vue.js applications, based on the knowledge base and the guidelines provided in section 3, Guidelines. The output should be clear, actionable, and tailored to the specific context of the project being developed, whether it's a new project or an existing project.
-
-The output should be integrated with the current context provided by the user, ensuring that the recommendations evaluated here are being applied to the specific code of the Vue.js application being developed. 
+Provide clear, actionable recommendations and best practices tailored to the specific Vue.js project context, whether new or existing. Recommendations should follow the guidelines in section 3 and be directly applied to the user's code. 
