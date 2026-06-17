@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/cr0wg4n/dev-skills/main/docs/assets/dev-skills.png" alt="Dev Skills Logo" width="100%" />
+<img src="https://raw.githubusercontent.com/cr0wg4n/dev-skills/refs/heads/main/docs/assets/dev-skills.png" alt="Dev Skills Logo" width="100%" />
 
 # Dev Skills
 
