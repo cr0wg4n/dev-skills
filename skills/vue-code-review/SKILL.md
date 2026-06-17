@@ -32,6 +32,11 @@ The output should be a structured report that includes the overall quality of th
 | Fair            | Some issues found that may affect the functionality or maintainability of the code, but they are not critical. |
 | Poor            | Multiple issues found that significantly affect the functionality or maintainability of the code, or there are critical issues that need immediate attention. |
 
+Use the next emojis for the overall quality levels:
+- Good: ✅
+- Fair: ⚠️
+- Poor: ❌
+
 The severity of each issue should be categorized as "High", "Medium", or "Low" based on the potential impact on the functionality, maintainability, or readability of the code. The criteria for determining the severity of issues are as follows:
 
 | Severity | Criteria |
@@ -40,21 +45,26 @@ The severity of each issue should be categorized as "High", "Medium", or "Low" b
 | Medium   | Issues that may lead to confusion, reduce readability, or make the code harder to maintain, but do not directly cause bugs or security vulnerabilities. |
 | Low      | Issues that are mostly related to code style, formatting, or minor best practices that do not affect the functionality or maintainability of the code. |
 
+Use the next emojis for the severity levels:
+- High: 🔴
+- Medium: 🟠
+- Low: 🟢
+
 The following snippet is an example of the output format to follow when providing feedback; do not skip any of the points.
 
 ```md
 # Vue.js Code Review Feedback
 **Timestamp**: YYYY-MM-DD HH:MM:SS
-**Overall Quality**: Good/Fair/Poor
+**Overall Quality**: ✅ Good / ⚠️ Fair / ❌ Poor
 
 ## Issues Found
 1. **Issue 1**: Title of the issue found in the code.
-    - **Severity**: High/Medium/Low.
+    - **Severity**: 🔴 High / 🟠 Medium / 🟢 Low
     - **Description**: A detailed explanation of the issue, including why it is a problem and how it affects the code in the long run.
     - **Location**: Relative file name and line number.
     - **Recommendation**: Specific recommendation for improvement.  
 2. **Issue 2**: Title of the issue found in the code.
-    - **Severity**: High/Medium/Low.
+    - **Severity**: 🔴 High / 🟠 Medium / 🟢 Low
     - **Description**: A detailed explanation of the issue, including why it is a problem and how it affects the code in the long run.
     - **Location**: Relative file name and line number.
     - **Recommendation**: Specific recommendation for improvement.  
