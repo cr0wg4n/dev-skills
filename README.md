@@ -6,7 +6,7 @@
 
 > Stop rewriting the same code review comments. Let your AI agent enforce your team's standards automatically.
 
-**Dev Skills** is a collection of agentic skills that encode real engineering guidelines — so your AI assistant gives consistent, opinionated feedback across your entire team, not generic advice.
+**Dev Skills** is a well selected collection of real software engineering best practices, experiences and guidelines — so your AI assistant gives consistent, opinionated feedback across your entire team, not generic advice.
 
 ---
 
