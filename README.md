@@ -1,3 +1,5 @@
+<img src="https://raw.githubusercontent.com/cr0wg4n/dev-skills/main/docs/assets/dev-skills.png" alt="Dev Skills Logo" width="100%" />
+
 # Dev Skills
 
 [![skills.sh](https://skills.sh/b/cr0wg4n/dev-skills)](https://skills.sh/cr0wg4n/dev-skills)
@@ -25,9 +27,7 @@
 npx skills add cr0wg4n/dev-skills
 ```
 
-Pick your agentic tool with `SPACE`, confirm with `ENTER`. Works locally per-project or globally across your machine.
-
-**Supported tools:** Claude Code, Cursor, and anything compatible with [skills.sh](https://skills.sh).
+**Supported AI tools:** Claude Code, Cursor, and anything compatible with [skills.sh](https://skills.sh).
 
 ---
 
