@@ -9,6 +9,14 @@
         "vue-code-review",
         "vue-builder"
       ]
+    },
+    {
+      "title": "TypeScript",
+      "description": "A skill designed to review TypeScript code for quality, maintainability, and adherence to best practices, providing feedback and recommendations for improvement.",
+      "skills": [
+        "ts-code-review",
+        "ts-builder"
+      ]
     }
   ]
 }
