@@ -26,9 +26,10 @@ There are two main scenarios where this skill can be applied, and the instructio
 
 For each case, the skill should provide specific recommendations and best practices based on the knowledge base, ensuring that the Vue.js application is built in a well-structured and maintainable way.
 
-## 3. Guidelines
-Fetch the `vue-code-guidelines.md` file for a comprehensive list of Vue.js best practices and guidelines. Use web fetch to retrieve the latest rules from this URL:
+The guidelines provided in section 3 (`vue-code-guidelines.md`) should be consistently referenced in all future interactions to ensure that the recommendations and best practices remain aligned while assisting with building Vue.js applications.
 
+## 3. Guidelines
+Fetch the `vue-code-guidelines.md` wich is a must have knowledge base for this skill. This document should be used as a reference for providing recommendations and best practices when assisting with building Vue.js applications. The URL for fetching the guidelines is:
 ```
 https://raw.githubusercontent.com/cr0wg4n/dev-skills/main/docs/guidelines/vue-code-guidelines.md
 ```

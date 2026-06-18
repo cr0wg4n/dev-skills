@@ -17,8 +17,7 @@ This skill is used as a quality check for Vue.js code, ideally before a code rev
 4. Provide feedback and suggestions based on the guidelines, highlighting the areas that do not follow the guidelines and offer specific recommendations for improvement based on the knowledge base; the output you provide should follow the syntax mentioned in the section 4, Output.
 
 ## 3. Guidelines
-Fetch the `vue-code-guidelines.md` file for a comprehensive list of Vue.js best practices and guidelines. Use web fetch to retrieve the latest rules from this URL:
-
+Fetch the `vue-code-guidelines.md` wich is a must have knowledge base for this skill. This document should be used as a reference for providing recommendations and best practices when assisting with building Vue.js applications. The URL for fetching the guidelines is:
 ```
 https://raw.githubusercontent.com/cr0wg4n/dev-skills/main/docs/guidelines/vue-code-guidelines.md
 ```

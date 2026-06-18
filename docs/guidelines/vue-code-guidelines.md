@@ -65,6 +65,14 @@
   ├── layouts/                    # DefaultLayout.vue, AuthLayout.vue
   └── assets/
 ```
+- Order in components is important the correct order is: 
+  1. Props and emits definitions (using `defineProps` and `defineEmits` with proper interfaces/types)
+  2. Refs and reactive state
+  3. Composables
+  4. Computed properties 
+  5. Watchers
+  6. Functions
+  7. Lifecycle hooks (e.g., `onMounted`, `onUnmounted`, ...)
 
 
 ### 2. Naming Conventions
