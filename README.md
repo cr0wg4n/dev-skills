@@ -16,8 +16,8 @@
 |-------|--------------|
 | `vue-code-review` | Reviews Vue 3 code against battle-tested guidelines: component structure, Composition API patterns, reactivity pitfalls, and more. |
 | `vue-builder` | Guides you through building Vue apps the right way — folder structure, state management, component design, naming conventions. |
-
-**TypeScript skills** — coming soon.
+| `ts-code-review` | Reviews TypeScript code for best practices, type safety, and common pitfalls. |
+| `ts-builder` | Helps you build TypeScript projects with proper guidelines, and best practices. |
 
 ---
 
@@ -49,3 +49,5 @@ Want to add a skill for your stack? Read [CONTRIBUTING.md](CONTRIBUTING.md) to g
 ---
 
 > Found this useful? Share it with your team. One install saves hours of repeated feedback.
+
+Made with ❤️ by [cr0wg4n](https://github.com/cr0wg4n)
