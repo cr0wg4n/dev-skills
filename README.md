@@ -33,11 +33,21 @@ npx skills add cr0wg4n/dev-skills
 
 ## 🤖 How it works
 
-Once installed, your AI assistant gains context about your team's standards. Ask it to:
+Once installed, your AI assistant gains context about these opinionated guideline standards.
+
+For example, when you develop a Vue 3 + TypeScript application, your AI assistant will automatically review it against the `/vue-code-review` and `/ts-code-review` skills, giving you consistent feedback based on the skills before creating a Pull Request, so you can improve your code even before submitting it.
+
+Prompt when need review:
+```
+Check the latest commit in this branch against the /vue-code-review and /ts-code-review skills, and give me feedback on how to improve my code.
+```
+
+When you are actively developing a project, your AI assistant can guide you through setting up the project structure, configuration, and ensuring long-term application resilience using the `/vue-builder` and `/ts-builder` skills.
+
+Prompt when you want to integrate the knowledge into the development process:
 
 ```
-/vue-code-review   → review a Vue component against the guidelines
-/vue-builder       → get opinionated help building a new feature
+I want ..., use the /vue-builder and /ts-builder skills throughout the complete process and introduce the changes accordingly.
 ```
 
 ---
