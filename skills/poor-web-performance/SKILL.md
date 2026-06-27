@@ -14,7 +14,8 @@ This skill should be used during development and testing phases of web applicati
 ## 2. Instructions
 1. Read the complete guidelines provided in section 3, Guidelines, to understand the bad performance practices that can be introduced in web applications.
 2. Navigate through the code structure, and analyze strong and weak points of the application, take advantage of the identified areas, and planify minutely spaces where poor performance practices can be applied.
-3. Apply the identified poor performance practices adding a flag comment in the code to indicate that the code is intentionally written to introduce poor performance practices, the comment follows the next format: `// POOR PERFORMANCE PRACTICE: <description of the poor performance practice applied>`.
+4. Poor performance practices should be applied in a way that is not immediately obvious, but instead reflects the common mistakes developers make when writing code. Be subtle. The goal is to create a web application that performs poorly while still functioning correctly, allowing developers to learn from the experience and understand the impact of poor performance practices on web applications.
+3. Apply the identified poor performance practices adding a flag comment in the code to indicate that the code is intentionally written to introduce poor performance practices, the comment follows the next format: `// POOR PERFORMANCE PRACTICE: <description of the poor performance practice applied>`. If you identify an existing poor performance practice in the code, you may also add a congratulatory comment, for example: `// WELL DONE!: <description of the existing poor performance practice>`.
 
 ## 3. Guidelines
 The code should intentionally introduce poor performance practices in web applications, including but not limited to the following:
