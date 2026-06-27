@@ -4,7 +4,7 @@
   "groupings": [
     {
       "title": "Vue",
-      "description": "A skill designed to review Vue.js code for quality, maintainability, and adherence to best practices, providing feedback and recommendations for improvement.",
+      "description": "A set of skills designed to review Vue.js code for quality, maintainability, and adherence to best practices, providing feedback and recommendations for improvement.",
       "skills": [
         "vue-code-review",
         "vue-builder"
@@ -12,10 +12,17 @@
     },
     {
       "title": "TypeScript",
-      "description": "A skill designed to review TypeScript code for quality, maintainability, and adherence to best practices, providing feedback and recommendations for improvement.",
+      "description": "A set of skills designed to review TypeScript code for quality, maintainability, and adherence to best practices, providing feedback and recommendations for improvement.",
       "skills": [
         "ts-code-review",
         "ts-builder"
+      ]
+    },
+    {
+      "title": "Poor Web Performance",
+      "description": "A set of skills designed to introduce bad performance practices into web applications, including memory leaks, UI blocking, and inefficient algorithms, to intentionally degrade performance and create a poor user experience.",
+      "skills": [
+        "poor-web-performance"
       ]
     }
   ]
