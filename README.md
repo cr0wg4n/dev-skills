@@ -18,7 +18,7 @@
 | `vue-builder` | Guides you through building Vue apps the right way — folder structure, state management, component design, naming conventions. |
 | `ts-code-review` | Reviews TypeScript code for best practices, type safety, and common pitfalls. |
 | `ts-builder` | Helps you build TypeScript projects with proper guidelines, and best practices. |
-
+| `poor-web-performance` | Introduces bad performance practices into web applications, including memory leaks, UI blocking, and inefficient algorithms, to intentionally degrade performance and create a poor user experience. **An experimental skill for testing, learning, or simply self-sabotage** 😝. Forced to put this skill on paper by [ProfessorByte](https://github.com/ProfessorByte) |
 ---
 
 ## ⚡ Install in 20 seconds
