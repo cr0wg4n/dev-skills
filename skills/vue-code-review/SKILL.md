@@ -1,6 +1,6 @@
 ---
 name: vue-code-review
-description: A skill designed to review Vue.js code for quality, maintainability, and adherence to best practices, providing feedback and recommendations for improvement.
+description: Reviews Vue 3 and Vue.js code against team guidelines covering code structure, naming, props and events, computed properties and watchers, templating, composables, and services, and returns a graded report of severity-ranked issues. Use when the user asks to review, audit, critique, or give feedback on Vue components, .vue files, a Vue pull request, or the latest commit or staged changes in a Vue project, before opening a PR or during code review. Also use it for indirect requests like "is this component ok?", "check my Vue changes", or "anything wrong with this .vue file?", even when the word "review" never appears. Not for building or scaffolding new Vue code; use vue-builder for that.
 ---
 
 # vue-code-review
@@ -11,16 +11,17 @@ This is a skill designed to review Vue.js code for quality, maintainability, and
 This skill is used as a quality check for Vue.js code, ideally before a code review or during a code review. 
 
 ## 2. Instructions
-1. Before anything fetch the latest guidelines (`vue-code-guidelines.md` file) from the URL provided in section 3, Guidelines, use it later as context for providing recommendations and best practices.
-2. Check the latest commit or the current staged changes for Vue.js files; the user should provide the scope, or if not available or ambiguous, you can ask for the relevant code and scope to analyze. 
-3. Check the code against the guidelines (`vue-code-guidelines.md`) provided below in section 3, Guidelines.
+1. Before anything, read the guidelines file `references/vue-code-guidelines.md` bundled with this skill, and use it as context for providing recommendations and best practices.
+2. Determine the scope, using the first source that yields `.vue` files:
+   - (a) the files or diff the user named in the request;
+   - (b) staged changes, listed with `git diff --cached --name-only`;
+   - (c) the latest commit, listed with `git show --name-only --format= HEAD`.
+   If none of these yields `.vue` files, or the scope is still unclear, ask the user what to review before continuing. Do not guess a scope and do not review files outside it. 
+3. Check the code against the guidelines in `references/vue-code-guidelines.md`, described in section 3, Guidelines.
 4. Provide feedback and suggestions based on the guidelines, highlighting the areas that do not follow the guidelines and offer specific recommendations for improvement based on the knowledge base; the output you provide should follow the syntax mentioned in the section 4, Output.
 
 ## 3. Guidelines
-Fetch the `vue-code-guidelines.md` wich is a must have knowledge base for this skill. This document should be used as a reference for providing recommendations and best practices when assisting with building Vue.js applications. The URL for fetching the guidelines is:
-```
-https://raw.githubusercontent.com/cr0wg4n/dev-skills/main/docs/guidelines/vue-code-guidelines.md
-```
+The file `references/vue-code-guidelines.md` is a must-have knowledge base for this skill. It ships inside the skill folder so it works offline and always matches the installed version. Use it as the reference for providing recommendations and best practices when reviewing Vue.js code. Do not fetch guidelines from the network.
 
 ## 4. Output
 The output should be a structured report that includes the overall quality of the code ("Good", "Fair", "Poor") and a list of specific issues found in the code, along with their severity, location, and recommendations for improvement. The next table shows the criteria for determining the overall quality of the code:
@@ -70,4 +71,4 @@ The following snippet is an example of the output format to follow when providin
 3. ...
 ```
 
-Finally, create a file called `vue-code-review-${timestamp}.md` in the root project folder with the complete output.
+Show the complete report in the chat. Do not write a file to the repository unless the user asks for one. If they ask for a file, save it in the project root as `vue-code-review-YYYY-MM-DD_HH-mm-ss.md`, using local time, to match the naming of `example/vue-bad-practices/vue-code-review-2026-06-17_00-00-00.md`.

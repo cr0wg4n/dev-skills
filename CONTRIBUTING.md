@@ -37,8 +37,8 @@ Describe the exact scenarios that trigger this skill.
 Step-by-step instructions the agent will follow. Be specific and imperative.
 
 ## 3. Guidelines
-Point to the authoritative guidelines file the agent should fetch.
-Use a raw GitHub URL so it always pulls the latest version.
+Point to the guidelines file the agent should read from `references/` inside the skill folder.
+Never fetch guidelines from the network: bundled files work offline and match the installed version.
 
 ## 4. Output
 Define the exact output format: structure, fields, file name, emojis, severity levels, etc.
@@ -65,15 +65,17 @@ If your skill references guidelines, host them in `docs/guidelines/`:
 docs/guidelines/my-stack-guidelines.md
 ```
 
-Commit guidelines to `main` before referencing them via raw GitHub URL. The URL pattern is:
+Register the guideline in `scripts/sync-guidelines.sh` by adding its file name and the skills that use it to the `TARGETS` map. Then run the script to copy it into each skill:
 
+```bash
+scripts/sync-guidelines.sh
 ```
-https://raw.githubusercontent.com/cr0wg4n/dev-skills/main/docs/guidelines/<file>.md
-```
+
+The script writes `skills/<skill>/references/<file>.md` with a "generated, do not edit" header. Have each skill's `SKILL.md` read `references/<file>.md`.
 
 ### 3. Register in `skills.sh.json`
 
-Add your skill to an existing group or create a new one:
+Add your skill name to the `skills` array of an existing group, or add a new object to `groupings` for a new group. Skills that belong to no group are listed at the bottom (`"notGrouped": "bottom"`). Example with one group:
 
 ```json
 {
@@ -82,20 +84,16 @@ Add your skill to an existing group or create a new one:
   "groupings": [
     {
       "title": "Vue",
-      "description": "A skill designed to review Vue.js code for quality, maintainability, and adherence to best practices, providing feedback and recommendations for improvement.",
+      "description": "A set of skills designed to review Vue.js code for quality, maintainability, and adherence to best practices, providing feedback and recommendations for improvement.",
       "skills": [
         "vue-code-review",
         "vue-builder"
-        // ... if its vue specific
       ]
-    },
-    {
-      // ... or create a new group if it doesn't fit existing ones
     }
   ]
 }
-
 ```
+
 
 ### 4. Add an example (recommended)
 
@@ -116,7 +114,7 @@ Include in the PR description:
 
 ## Updating an existing skill
 
-- **Guidelines changes** go in `docs/guidelines/`. Skills fetch them dynamically via URL — no changes to `SKILL.md` needed unless the URL or structure changes.
+- **Guidelines changes** go in `docs/guidelines/` only. Then run `scripts/sync-guidelines.sh` to refresh the bundled copies under `skills/*/references/`, and commit both. Never edit the copies in `references/` by hand. CI runs `scripts/sync-guidelines.sh --check` and fails if a copy is stale.
 - **Instruction changes** in `SKILL.md` must be intentional. Test the updated skill against the example app before submitting.
 - **Output format changes** require updating all examples that depend on that format.
 

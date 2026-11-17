@@ -1,9 +1,9 @@
 ---
 name: poor-web-performance
-description: A skill designed to introduce bad performance practices in web applications, including memory leaks, blocking the UI, and inefficient algorithms, to force the application to perform poorly and provide a negative user experience.
+description: Deliberately introduces poor performance practices into a web application, such as memory leaks, UI-blocking work on the main thread, inefficient algorithms, missing caching, unkeyed lists, and no lazy loading, so developers can learn their effects or test against a slow app. Use when the user asks to make an app slow, laggy, or leaky, to sabotage performance, to build a performance anti-pattern demo, or to practice finding performance bugs, even when they phrase it as "break performance" or "make it janky". It edits project code and flags each change with a comment. Not for fixing or optimizing performance; use web-performance-review for that.
 ---
 
-## Poor Web Performance Skill
+# poor-web-performance
 
 This is a Skill designed to introduce bad performance practices in web applications, including memory leaks, blocking the UI, and inefficient algorithms, to force the application to perform poorly and provide a negative user experience. It can help developers understand the impact of poor performance practices on web applications and how to avoid them.
 
@@ -13,9 +13,11 @@ This skill should be used during development and testing phases of web applicati
 
 ## 2. Instructions
 1. Read the complete guidelines provided in section 3, Guidelines, to understand the bad performance practices that can be introduced in web applications.
-2. Navigate through the code structure, and analyze strong and weak points of the application, take advantage of the identified areas, and planify minutely spaces where poor performance practices can be applied.
+2. Confirm the scope before editing anything. Use the files or directory the user named. If they did not name one, ask which code to modify. Do not edit files outside that scope, and leave dependency manifests, lockfiles, build configuration, and tests alone unless the user explicitly asks for changes to them. The changes are intentional, so an unclear scope can damage code the user needs.
+3. Navigate through the scoped code structure, analyze its strong and weak points, take advantage of the identified areas, and plan where poor performance practices can be applied.
 4. Poor performance practices should be applied in a way that is not immediately obvious, but instead reflects the common mistakes developers make when writing code. Be subtle. The goal is to create a web application that performs poorly while still functioning correctly, allowing developers to learn from the experience and understand the impact of poor performance practices on web applications.
-3. Apply the identified poor performance practices adding a flag comment in the code to indicate that the code is intentionally written to introduce poor performance practices, the comment follows the next format: `// POOR PERFORMANCE PRACTICE: <description of the poor performance practice applied>`. If you identify an existing poor performance practice in the code, you may also add a congratulatory comment, for example: `// WELL DONE!: <description of the existing poor performance practice>`.
+5. Apply the identified poor performance practices adding a flag comment in the code to indicate that the code is intentionally written to introduce poor performance practices, the comment follows the next format: `// POOR PERFORMANCE PRACTICE: <description of the poor performance practice applied>`. If you identify an existing poor performance practice in the code, you may also add a congratulatory comment, for example: `// WELL DONE!: <description of the existing poor performance practice>`.
+6. In your reply, list every file you changed and each flagged change, so the user can review the changes or revert them with `git diff` or `git checkout`.
 
 ## 3. Guidelines
 The code should intentionally introduce poor performance practices in web applications, including but not limited to the following:

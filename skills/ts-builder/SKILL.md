@@ -1,6 +1,6 @@
 ---
 name: ts-builder
-description: A skill designed to assist in building TypeScript applications by providing guidance on project structure, component design, state management, and best practices for development.
+description: Guides building TypeScript applications and libraries the right way, covering project structure, naming conventions, type design, functions, interfaces and classes, modules, async code, and error handling. Use when the user starts a new TypeScript project, sets up a tsconfig, adds modules or types, designs an API client or data model in TypeScript, or wants to add a feature to an existing TS codebase in a consistent way. Also use it for indirect requests like "set up a TS library" or "how should I type this?", even when "best practices" is never mentioned. Not for reviewing existing code; use ts-code-review for that. Not for Vue components; use vue-builder for those.
 ---
 
 # ts-builder
@@ -11,7 +11,7 @@ This skill is used during the development phase of a TypeScript application, esp
 
 
 ## 2. Instructions
-Before anything fetch the latest guidelines (`typescript-code-guidelines.md` file) from the URL provided in section 3, Guidelines, use it later as context for providing recommendations and best practices.
+Before anything, read the guidelines file `references/typescript-code-guidelines.md` bundled with this skill, and use it as context for providing recommendations and best practices.
 
 There are two main scenarios where this skill can be applied, and the instructions for each scenario are as follows:
 
@@ -26,13 +26,10 @@ There are two main scenarios where this skill can be applied, and the instructio
 
 For each case, the skill should provide specific recommendations and best practices based on the knowledge base, ensuring that the TypeScript application is built in a well-structured and maintainable way.
 
-The guidelines provided in section 3 (`typescript-code-guidelines.md`) should be consistently referenced in all future interactions to ensure that the recommendations and best practices remain aligned while assisting with building TypeScript applications.
+The guidelines in `references/typescript-code-guidelines.md` (described in section 3) should be consistently referenced in all future interactions to ensure that the recommendations and best practices remain aligned while assisting with building TypeScript applications.
 
 ## 3. Guidelines
-Fetch the `typescript-code-guidelines.md` wich is a must have knowledge base for this skill. This document should be used as a reference for providing recommendations and best practices when assisting with building TypeScript applications. The URL for fetching the guidelines is:
-```
-https://raw.githubusercontent.com/cr0wg4n/dev-skills/main/docs/guidelines/typescript-code-guidelines.md
-```
+The file `references/typescript-code-guidelines.md` is a must-have knowledge base for this skill. It ships inside the skill folder so it works offline and always matches the installed version. Use it as the reference for providing recommendations and best practices when building TypeScript applications. Do not fetch guidelines from the network.
 
 ## 4. Output
 Provide clear, actionable recommendations and best practices tailored to the specific TypeScript project context, whether new or existing. Recommendations should follow the guidelines in section 3 and be directly applied to the user's code. 

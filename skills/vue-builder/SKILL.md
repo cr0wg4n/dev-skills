@@ -1,6 +1,6 @@
 ---
 name: vue-builder
-description: A skill designed to assist in building Vue.js applications by providing guidance on project structure, component design, state management, and best practices for development.
+description: Guides building Vue 3 and Vue.js applications the right way, covering project structure, file and folder naming, component design, props and events, computed properties and watchers, composables, services, and state management. Use when the user starts a new Vue or Vue plus TypeScript project, scaffolds components or pages, asks where code should live or how to organize a Vue codebase, or wants to add a feature to an existing Vue app in a consistent way. Also use it for indirect requests like "set up a Vue 3 app with Pinia" or "where should this component go?", even when "best practices" is never mentioned. Not for reviewing existing code; use vue-code-review for that.
 ---
 
 # vue-builder
@@ -11,7 +11,7 @@ This skill is used during the development phase of a Vue.js application, especia
 
 
 ## 2. Instructions
-Before anything fetch the latest guidelines (`vue-code-guidelines.md` file) from the URL provided in section 3, Guidelines, use it later as context for providing recommendations and best practices.
+Before anything, read the guidelines file `references/vue-code-guidelines.md` bundled with this skill, and use it as context for providing recommendations and best practices.
 
 There are two main scenarios where this skill can be applied, and the instructions for each scenario are as follows:
 
@@ -26,13 +26,10 @@ There are two main scenarios where this skill can be applied, and the instructio
 
 For each case, the skill should provide specific recommendations and best practices based on the knowledge base, ensuring that the Vue.js application is built in a well-structured and maintainable way.
 
-The guidelines provided in section 3 (`vue-code-guidelines.md`) should be consistently referenced in all future interactions to ensure that the recommendations and best practices remain aligned while assisting with building Vue.js applications.
+The guidelines in `references/vue-code-guidelines.md` (described in section 3) should be consistently referenced in all future interactions to ensure that the recommendations and best practices remain aligned while assisting with building Vue.js applications.
 
 ## 3. Guidelines
-Fetch the `vue-code-guidelines.md` wich is a must have knowledge base for this skill. This document should be used as a reference for providing recommendations and best practices when assisting with building Vue.js applications. The URL for fetching the guidelines is:
-```
-https://raw.githubusercontent.com/cr0wg4n/dev-skills/main/docs/guidelines/vue-code-guidelines.md
-```
+The file `references/vue-code-guidelines.md` is a must-have knowledge base for this skill. It ships inside the skill folder so it works offline and always matches the installed version. Use it as the reference for providing recommendations and best practices when building Vue.js applications. Do not fetch guidelines from the network.
 
 ## 4. Output
 Provide clear, actionable recommendations and best practices tailored to the specific Vue.js project context, whether new or existing. Recommendations should follow the guidelines in section 3 and be directly applied to the user's code. 

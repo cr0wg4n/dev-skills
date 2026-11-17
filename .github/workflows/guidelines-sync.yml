@@ -1,0 +1,13 @@
+name: Guidelines sync
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check-bundled-guidelines:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify bundled guideline copies match docs/guidelines
+        run: scripts/sync-guidelines.sh --check

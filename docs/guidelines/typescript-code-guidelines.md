@@ -1,176 +1,189 @@
-# Typescript Code Guidelines
+# TypeScript Code Guidelines
 
-## Naming Conventions
-- Use camelCase for variable and function names. E.g., `userName`, `getUserData()`.
-- Use PascalCase for class and interface names. E.g., `User`, `UserService`.
-- Use UPPER_SNAKE_CASE for constants. E.g., `MAX_USERS`, `API_URL`.
-- Prefix boolean variables with `is`, `has`, or `can`. E.g., `isActive`, `hasPermission`, `canEdit`.
-- Use descriptive names that clearly indicate the purpose of the variable, function, or class. Avoid abbreviations unless they are widely understood.
-- For enums and types, use PascalCase. E.g., `UserRole`, `ApiResponse`.
-- For enum items and type literals, use UPPER_SNAKE_CASE. E.g., `ADMIN`, `USER`, `SUCCESS`, `ERROR`.
+Version: 1.1.0 · Last updated: 2026-11-17
 
-## Typing 
-- Avoid using the `any` type. Instead, use specific types or generics to ensure type safety. E.g., `function getUser<T>(): T { ... }`.
-- Use union types when a variable can hold multiple types. E.g., `let userId: number | string;`.
-- Take advantage of type utilities like `Partial`, `Pick`, and `Omit` to create new types based on existing ones. E.g., `type UserPreview = Pick<User, 'id' | 'name'>;`.
+## 1. Naming
 
-## Functions
-- Functions should be small and focused on a single task. If a function is doing too much, consider breaking it into smaller functions.
-- Prefer arrow functions for anonymous functions and callbacks. E.g., `const getUser = () => { ... }`.
-- Prefer classic functions when defining methods in classes or when context is needed. E.g., `class User { getName() { ... } }`.
-- Use explicit return types for functions to improve readability and maintainability. E.g., `function getUser(): User { ... }`.
-- When applies try to use generic types for functions that can work with multiple types. E.g., `function identity<T>(arg: T): T { return arg; }`.
-- Use async/await for asynchronous code to improve readability. E.g., `async function fetchData() { const response = await fetch(url); ... }`.
-- When the number of parameters exceeds 3, consider using an options object to improve readability. E.g.,
-  - ```typescript
-      function createUser({ name, age, email }: { name: string; age: number; email: string }) { ... }
-    ```
+These rules are shared between the Vue and TypeScript guidelines and must stay identical in both documents.
 
-## Enums
-- Prefer using enums for a fixed set of related constants over single type string literals. E.g., `enum UserRole { ADMIN, USER, GUEST }`.
-- Avoid using enums for values that are not related or do not have a clear relationship. In such cases, consider using constants.
+- Use camelCase for variables, functions, and parameters.
+- Use PascalCase for classes, interfaces, types, enums, and components.
+- Use UPPER_SNAKE_CASE for module-level constants that never change.
+- Use PascalCase for enum names and enum members, e.g. `UserRole.Admin`.
+- Use lowercase strings for string literal union members, e.g. `'asc' | 'desc'`.
+- Prefix boolean variables and props with `is`, `has`, `can`, or `should`, e.g. `isActive`, `hasPermission`.
+- Use descriptive names that state the purpose. Avoid abbreviations unless they are widely understood.
+- Use `function` declarations for named functions and methods. Use arrow functions for inline callbacks.
+- Name files in lowercase, with the file's type as a middle segment: `.util.ts`, `.service.ts`, `.store.ts`, `.schema.ts`, `.type.ts`. For example: `http.service.ts`, `date.util.ts`, `auth.store.ts`, `login.schema.ts`, `auth.type.ts`.
+- Name composables `useX.ts` after their purpose, e.g. `useForm.ts`, `useAuth.ts`.
 
-## Constants
-- Use `const` for variables that should not be reassigned. E.g., `const API_URL = 'https://api.example.com';`.
-- For values that are meant to be immutable, consider using `readonly` properties in interfaces or classes. E.g., `interface User { readonly id: number; name: string; }`.
+## 2. Typing
 
-## Variables
-- Use `let` for variables that need to be reassigned. E.g., `let userName = 'John'; userName = 'Doe';`.
-- Avoid using `var` as it has function scope and can lead to unexpected behavior. Always prefer `let` or `const` for variable declarations.
+- Avoid the `any` type. Use specific types, generics, or `unknown` for values you have not checked yet.
+- Use union types when a variable can hold values of different types. E.g., `let userId: number | string;`. For a fixed set of named kinds, use enums instead (see section 4).
+- Use type utilities such as `Partial`, `Pick`, and `Omit` to build new types from existing ones. E.g., `type UserPreview = Pick<User, 'id' | 'name'>;`.
+- Narrow a type before using it, with type guards or control flow. E.g.:
+  ```typescript
+  function isUser(value: unknown): value is User {
+    return typeof value === 'object' && value !== null && 'id' in value;
+  }
+  ```
+- Model states with discriminated unions, where each branch carries its own data:
+  ```typescript
+  type LoadState =
+    | { status: LoadStatus.Loading }
+    | { status: LoadStatus.Ready; data: User }
+    | { status: LoadStatus.Error; message: string };
+  ```
+- Use `satisfies` to check a value against a type while keeping its inferred literal types. Use `as const` on literal data objects.
+- Avoid the non-null assertion `!`. Narrow the value instead.
+- Use `@ts-expect-error` with a reason rather than `@ts-ignore`. It fails when the error goes away, so it does not hide problems silently.
+- Enable `strict` in `tsconfig.json`. Also enable `noUncheckedIndexedAccess`, which `strict` does not include, so that indexed access is typed as possibly `undefined`.
 
-## Interfaces
-- Use interfaces to define the shape of objects and to enforce type safety. E.g., `interface User { id: number; name: string; }`.
-- Use optional properties in interfaces when a property is not required. E.g., `interface User { id: number; name: string; email?: string; }`.
+## 3. Functions
 
-## Classes
-- Use classes to define objects with both data and behavior. E.g.,
-  - ```typescript
-      class User {
-        constructor(public id: number, public name: string) { }
-        getName() { return this.name; }
-      }
-    ```
-- Use access modifiers (`public`, `private`, `protected`) to control the visibility of class members. E.g.,
-  - ```typescript
-      class User {
-        private id: number;
-        public name: string;
-        constructor(id: number, name: string) {
-          this.id = id;
-          this.name = name;
-        }
-      }
-    ```
-- Use inheritance and interfaces to promote code reuse and to define contracts for classes. E.g.,
-  - ```typescript
-      class Admin extends User {
-        constructor(id: number, name: string) { super(id, name); }
-      }
-    ```
-- Use classes judiciously and prefer composition over inheritance when possible. E.g., instead of:
-  - ```typescript
-      class Admin extends User { ... }
-    ```
-    consider:
-    ```typescript
-      class Admin { constructor(public user: User) { } }
-    ```
-- Avoid using classes for simple data structures that do not require behavior. In such cases, consider using interfaces or type aliases instead.
-- Avoid using classes or static classes for utility functions or static methods. Instead, consider modules to organize such functions.
+- Keep functions small and focused on a single task. If a function does too much, split it.
+- Use explicit return types for readability and maintainability. E.g., `function getUser(): User { ... }`.
+- Use generics when several types are valid, so the return type follows the input. E.g.:
+  ```typescript
+  function firstItem<T>(items: readonly T[]): T | undefined {
+    return items[0];
+  }
+  ```
+- Use `async`/`await` for asynchronous code.
+- When a function takes more than three parameters, use an options object. E.g.:
+  ```typescript
+  function createUser({ name, age, email }: { name: string; age: number; email: string }) { ... }
+  ```
 
-## Modules
-- Prefer ES6 code style modules (using `import` and `export`) over CommonJS modules (using `require` and `module.exports`). E.g., `export function getUser() { ... }` and `import { getUser } from './user';`.
-- Use named exports for functions, classes, and constants to improve readability and maintainability. E.g., `export function getUser() { ... }` and `import { getUser } from './user';`.
-- Avoid using default exports as they can lead to confusion and make it harder to refactor code. E.g., instead of `export default function getUser() { ... }`, use `export function getUser() { ... }` and `import { getUser } from './user';`.
-- Don't export everything from a single file. Instead, organize exports into logical modules and files to improve maintainability and readability. 
-- Prefer export statements at the end of the module to keep the main code separate from the export logic, also use type exports for types. E.g.,
-  - ```typescript
-      interface User { id: number; name: string; }
-      function getUser() { ... }
-      function createUser() { ... } 
+## 4. Enums and Union Types
 
-      export { getUser, createUser };
-      export type { User };
-    ```
-- When importing types, use `import type` to clearly indicate that the import is only for types and to avoid unnecessary imports in the compiled JavaScript. E.g., `import type { User } from './user';`.
-- Avoid circular dependencies between modules. If you find yourself needing to import a module that imports the current module, consider refactoring your code to eliminate the circular dependency.
+- Prefer enums for kinds: a fixed, named set of related values, such as roles, statuses, or event types. E.g., `enum UserRole { Admin, User, Guest }`.
+- Use union types only in the rare cases where they fit better:
+  - **Values defined by an external contract you do not own**, such as an API field or a database column, where the union documents the exact allowed strings. E.g., `type SortDirection = 'asc' | 'desc';` when the API defines it that way.
+  - **A single parameter choice in one function signature**, where declaring an enum would be overkill.
+  - **Type-level computations** such as template literal types or `keyof` results, which enums cannot express.
+- Enums are not erasable. If the project enables `erasableSyntaxOnly` (TypeScript 5.8+) or runs TypeScript through Node's type stripping, enums are rejected. In that case, use an `as const` object and derive the type from it:
+  ```typescript
+  const UserRole = { Admin: 'admin', User: 'user' } as const;
+  type UserRole = (typeof UserRole)[keyof typeof UserRole];
+  ```
 
+## 5. Constants and Variables
 
-## Asynchronous Code
-- Use async/await for asynchronous code to improve readability. E.g., `async function fetchData() { const response = await fetch(url); ... }`.
-- Handle errors properly using try/catch blocks or by returning error objects. E.g., `try { ... } catch (error) { ... }`. 
-- When working with promises, prefer using async/await over chaining `.then()` and `.catch()` for better readability. E.g., instead of:
-  - ```typescript
-      fetch(url).then(response => response.json()).then(data => { ... }).catch(error => { ... })
-    ```
-    use:
-    ```typescript
-      async function fetchData() {
-        try {
-          const response = await fetch(url);
-          const data = await response.json();
-          ...
-        } catch (error) { ... }
-      }
-    ```
-- When working with multiple asynchronous operations, consider using `Promise.all` to run them in parallel and improve performance. E.g.,
-  - ```typescript
-      const [userData, postsData] = await Promise.all([fetchUserData(), fetchPostsData()]);
-    ```
-- Avoid using async functions in loops, as it can lead to performance issues. Instead, consider using `Promise.all` or `for...of` with `await` to handle asynchronous operations in loops. E.g., instead of:
-  - ```typescript
-      for (const userId of userIds) {
-        const userData = await fetchUserData(userId);
-        ...
-      }
-    ```
-    use:
-    ```typescript
-      const userDataArray = await Promise.all(userIds.map(userId => fetchUserData(userId)));
-    ```
-- Turn synchronous functions into asynchronous ones when they involve I/O operations, such as fetching data from an API or reading/writing files. E.g., instead of:
-  - ```typescript
-      function fetchData() { const response = fetch(url); ... }
-    ```
-    use:
-    ```typescript
-      async function fetchData() { const response = await fetch(url); ... }
-    ```
-- Avoid using async functions for simple computations or operations that do not involve I/O, as it can lead to unnecessary overhead. E.g., instead of:
-  - ```typescript
-      async function calculateSum(a: number, b: number) { return a + b; }
-    ```
-    use:
-    ```typescript
-      function calculateSum(a: number, b: number) { return a + b; }
-    ```
-- When working with async functions, ensure that you handle the returned promises properly, either by using `await` or by returning the promise from the function. E.g., `async function fetchData() { return await fetch(url); }` or `async function fetchData() { return fetch(url); }`.
+- Use `const` for values that are never reassigned. E.g., `const API_URL = 'https://api.example.com';`.
+- Use `let` only for variables that are reassigned. E.g., `let userName = 'John'; userName = 'Doe';`.
+- Do not use `var`. It has function scope and leads to surprising behavior.
+- Use `readonly` for properties that must not change, e.g., `interface User { readonly id: number; name: string; }`.
 
-## Error Handling
-- Handle errors properly using try/catch blocks or by returning error objects. E.g., `try { ... } catch (error) { ... }`. 
-- Create custom error classes to provide more context and to improve error handling. Only if necessary. E.g.,
-  - ```typescript
-      class NotFoundError extends Error {
-        constructor(message: string) {
-          super(message);
-          this.name = 'NotFoundError';
-        }
-      }
-    ```
-- Avoid using generic error messages and provide specific error messages that can help with debugging and understanding the issue. E.g., instead of `throw new Error('Something went wrong');`, use `throw new Error('Failed to fetch user data from API');`.
-- Be sure you are not exposing sensitive information in error messages, especially in production environments. Avoid including stack traces or internal details in error messages that could be seen by end-users. E.g., instead of `throw new Error('Database connection failed: ' + error.message);`, use `throw new Error('Database connection failed');` and log the detailed error message separately for debugging purposes.
-- For tracing and logging errors, consider using a logging library that can capture and report errors in a structured way.
+## 6. Interfaces
 
+- Use interfaces to define the shape of objects and enforce type safety. E.g., `interface User { id: number; name: string; }`.
+- Mark properties that may be absent as optional. E.g., `interface User { id: number; name: string; email?: string; }`.
 
-## Miscellaneous
-- Handle errors properly using try/catch blocks or by returning error objects. E.g., `try { ... } catch (error) { ... }`. 
-- When introducing new dependencies:
-  - Ensure they are well-maintained and have good documentation. Avoid adding dependencies that are not necessary for the project.
-  - Consider the size of the dependency and its impact on the overall bundle size. Avoid adding large dependencies for small tasks that can be accomplished with native JavaScript or smaller libraries.
-  - Prefer libraries that are tree-shakeable to minimize the impact on bundle size. Avoid libraries that include a lot of unused code.
-  - Ensure you have the `.npmrc` file configured to ignore pre, post, and prepare scripts to avoid potential security risks (supply chain attacks) with package installation. E.g., add the following to your `.npmrc` file:
-    - ```
-        ignore-scripts=true
-      ```
-- Promote code reusability by creating reusable components, functions, and modules. Avoid duplicating code and instead, abstract common functionality into reusable pieces.
-- Use comments to explain the purpose and functionality of complex code, but avoid over-commenting. Strive for self-explanatory code that minimizes the need for comments.
+## 7. Classes
+
+- Use classes to group data with the behavior that operates on it:
+  ```typescript
+  class User {
+    constructor(public id: number, public name: string) { }
+    getName(): string { return this.name; }
+  }
+  ```
+- Use access modifiers (`public`, `private`, `protected`) to control visibility of class members:
+  ```typescript
+  class User {
+    private id: number;
+    public name: string;
+    constructor(id: number, name: string) {
+      this.id = id;
+      this.name = name;
+    }
+  }
+  ```
+- Use inheritance only when the situation calls for it. It fits a stable, shallow "is-a" relationship, such as a custom error hierarchy:
+  ```typescript
+  class NotFoundError extends Error {
+    constructor(message: string) {
+      super(message);
+      this.name = 'NotFoundError';
+    }
+  }
+  ```
+  Prefer composition when classes share behavior without a true "is-a" relationship, or when the hierarchy would go deeper than one level. E.g., instead of `class Admin extends User`, use:
+  ```typescript
+  class Admin {
+    constructor(public user: User) { }
+  }
+  ```
+- Avoid classes for simple data structures. Use interfaces or type aliases instead.
+- Avoid classes with only static methods. Use modules to group utility functions.
+
+## 8. Modules
+
+- Use ES modules (`import` and `export`) rather than CommonJS (`require` and `module.exports`). E.g., `export function getUser() { ... }` and `import { getUser } from './user';`.
+- Use named exports. Avoid default exports, because they make refactoring and searching harder. Exceptions are the cases where a framework requires a default export, such as Vue single-file components and lazy-loaded route components.
+- Do not export everything from one file. Organize exports into logical modules.
+- Put export statements at the end of the module, and use `export type` for types:
+  ```typescript
+  interface User { id: number; name: string; }
+  function getUser() { ... }
+  function createUser() { ... }
+
+  export { getUser, createUser };
+  export type { User };
+  ```
+- Use `import type` for imports that are only used as types. E.g., `import type { User } from './user';`.
+- Avoid circular dependencies between modules. Refactor to remove them.
+
+## 9. Asynchronous Code
+
+- Use `async`/`await` rather than `.then()` and `.catch()` chains. E.g.:
+  ```typescript
+  async function fetchData() {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      ...
+    } catch (error) { ... }
+  }
+  ```
+- Run independent async operations in parallel with `Promise.all`. E.g., `const [userData, postsData] = await Promise.all([fetchUserData(), fetchPostsData()]);`.
+- When running many operations in parallel, cap the concurrency. Unbounded `Promise.all` over a large array can overwhelm an API or exhaust resources. Process large batches in chunks.
+- Avoid `await` inside loops when the iterations are independent. Use `Promise.all` instead. E.g., instead of:
+  ```typescript
+  for (const userId of userIds) {
+    const userData = await fetchUserData(userId);
+    ...
+  }
+  ```
+  use:
+  ```typescript
+  const userDataArray = await Promise.all(userIds.map(userId => fetchUserData(userId)));
+  ```
+- Make functions asynchronous when they perform I/O, such as network requests or file access. E.g., instead of `function fetchData() { const response = fetch(url); ... }`, use `async function fetchData() { const response = await fetch(url); ... }`.
+- Do not make functions asynchronous when they do no I/O. E.g., `function calculateSum(a: number, b: number) { return a + b; }` should not be `async`.
+- Always handle returned promises, either with `await` or by returning them. E.g., `async function fetchData() { return await fetch(url); }` or `async function fetchData() { return fetch(url); }`.
+
+## 10. Error Handling
+
+- Handle errors with try/catch blocks or by returning error objects. E.g., `try { ... } catch (error) { ... }`.
+- Create custom error classes when they add useful context. Use them only when needed (see section 7).
+- Use specific error messages that help with debugging. E.g., instead of `throw new Error('Something went wrong');`, use `throw new Error('Failed to fetch user data from API');`.
+- Do not expose sensitive details in error messages shown to end users, such as stack traces or internal messages. E.g., instead of `throw new Error('Database connection failed: ' + error.message);`, throw `new Error('Database connection failed');` and log the detailed error separately.
+- For tracing and logging, use a logging library that captures and reports errors in a structured way.
+
+## 11. Validation at Boundaries
+
+- Treat data from outside the program as `unknown`: HTTP responses, storage, environment variables, and user input. Validate it with a schema library such as `zod` before use.
+- Let the type follow the schema, so the two cannot drift apart. E.g., `type User = z.infer<typeof userSchema>;`.
+
+## 12. Miscellaneous
+
+- When introducing a new dependency:
+  - Make sure it is well maintained and documented. Avoid dependencies the project does not need.
+  - Check its size and its effect on bundle size. Avoid large dependencies for small tasks that native JavaScript or a smaller library can handle.
+  - Prefer tree-shakable libraries, so bundlers can drop unused code.
+  - Consider `ignore-scripts=true` in `.npmrc`, which blocks install scripts from dependencies as a supply-chain safeguard. It also stops packages that build or download native binaries from setting themselves up. If you enable it, explicitly run the scripts those packages need.
+- Promote reusable code. Put shared functionality into reusable components, functions, and modules, and avoid duplicating code.
+- Use comments to explain the purpose of complex code. Avoid over-commenting, and prefer code that explains itself.
