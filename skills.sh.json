@@ -19,6 +19,13 @@
       ]
     },
     {
+      "title": "Web Performance",
+      "description": "A set of skills designed to review web application code for performance problems, such as memory leaks, main-thread blocking, unnecessary re-renders, and large bundles, and to give specific recommendations for fixing them.",
+      "skills": [
+        "web-performance-review"
+      ]
+    },
+    {
       "title": "Poor Web Performance",
       "description": "A set of skills designed to introduce bad performance practices into web applications, including memory leaks, UI blocking, and inefficient algorithms, to intentionally degrade performance and create a poor user experience.",
       "skills": [

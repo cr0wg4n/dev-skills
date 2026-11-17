@@ -1,6 +1,6 @@
 ---
 name: ts-code-review
-description: A skill designed to review TypeScript code for quality, maintainability, and adherence to best practices, providing feedback and recommendations for improvement.
+description: Reviews TypeScript code against team guidelines covering naming, typing, functions, interfaces, classes, modules, async code, and error handling, and returns a graded report of severity-ranked issues. Use when the user asks to review, audit, critique, or give feedback on .ts or .tsx files, a TypeScript pull request, or the latest commit or staged changes in a TypeScript project, before opening a PR or during code review. Also use it for indirect requests like "is this typed correctly?", "check my TS changes", or "anything wrong with this module?", even when the word "review" never appears. Not for Vue single-file components; use vue-code-review for those. Not for building new code; use ts-builder for that.
 ---
 
 # ts-code-review
@@ -11,16 +11,17 @@ This is a skill designed to review TypeScript code for quality, maintainability,
 This skill is used as a quality check for TypeScript code, ideally before a code review or during a code review. 
 
 ## 2. Instructions
-1. Before anything fetch the latest guidelines (`typescript-code-guidelines.md` file) from the URL provided in section 3, Guidelines, use it later as context for providing recommendations and best practices.
-2. Check the latest commit or the current staged changes for TypeScript files; the user should provide the scope, or if not available or ambiguous, you can ask for the relevant code and scope to analyze. 
-3. Check the code against the guidelines (`typescript-code-guidelines.md`) provided below in section 3, Guidelines.
+1. Before anything, read the guidelines file `references/typescript-code-guidelines.md` bundled with this skill, and use it as context for providing recommendations and best practices.
+2. Determine the scope, using the first source that yields `.ts` or `.tsx` files:
+   - (a) the files or diff the user named in the request;
+   - (b) staged changes, listed with `git diff --cached --name-only`;
+   - (c) the latest commit, listed with `git show --name-only --format= HEAD`.
+   If none of these yields TypeScript files, or the scope is still unclear, ask the user what to review before continuing. Do not guess a scope and do not review files outside it. 
+3. Check the code against the guidelines in `references/typescript-code-guidelines.md`, described in section 3, Guidelines.
 4. Provide feedback and suggestions based on the guidelines, highlighting the areas that do not follow the guidelines and offer specific recommendations for improvement based on the knowledge base; the output you provide should follow the syntax mentioned in the section 4, Output.
 
 ## 3. Guidelines
-Fetch the `typescript-code-guidelines.md` which is a must-have knowledge base for this skill. This document should be used as a reference for providing recommendations and best practices when assisting with building TypeScript applications. The URL for fetching the guidelines is:
-```
-https://raw.githubusercontent.com/cr0wg4n/dev-skills/main/docs/guidelines/typescript-code-guidelines.md
-```
+The file `references/typescript-code-guidelines.md` is a must-have knowledge base for this skill. It ships inside the skill folder so it works offline and always matches the installed version. Use it as the reference for providing recommendations and best practices when reviewing TypeScript code. Do not fetch guidelines from the network.
 
 ## 4. Output
 The output should be a structured report that includes the overall quality of the code ("Good", "Fair", "Poor") and a list of specific issues found in the code, along with their severity, location, and recommendations for improvement. The next table shows the criteria for determining the overall quality of the code:
@@ -70,4 +71,4 @@ The following snippet is an example of the output format to follow when providin
 3. ...
 ```
 
-Finally, create a file called `ts-code-review-${timestamp}.md` in the root project folder with the complete output.
+Show the complete report in the chat. Do not write a file to the repository unless the user asks for one. If they ask for a file, save it in the project root as `ts-code-review-YYYY-MM-DD_HH-mm-ss.md`, using local time, to match the naming used by `vue-code-review` examples.
